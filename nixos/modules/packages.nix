@@ -8,6 +8,7 @@
     curl
     htop
     btop
+    bluez
     bluetui
 
     # NixOSツール
