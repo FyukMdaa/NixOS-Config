@@ -1,21 +1,26 @@
 { epkgs, lib, isAndroid, ...}:
 
 with epkgs; [
-  # Bootstrap
+  # --- Bootstrap ---
   use-package
   
-  # Performance
+  # --- System Integration ---
+  envrc
+  exec-path-from-shell
+  
+  # --- Performance ---
   gcmh
   
-  # Core Editor
+  # --- Core / Editing ---
   which-key
   puni
   vundo
   visual-regexp
   avy
   expand-region
+  # ws-butler
   
-  # UI/Theme
+  # --- UI / Theme ---
   ef-themes
   spacious-padding
   dimmer
@@ -25,38 +30,50 @@ with epkgs; [
   mlscroll
   nerd-icons
   nerd-icons-corfu
+  nerd-icons-dired
   
-  # Minibuffer Completion
+  # --- Minibuffer / Completion ---
   vertico
   vertico-posframe
   consult
   consult-dir
   consult-flycheck
   consult-eglot
+  embark
   embark-consult
   marginalia
   orderless
-  embark
+  wgrep
   
-  # In-Buffer Completion
+  # --- In-Buffer Completion ---
   corfu
   corfu-terminal
   kind-icon
   cape
   
-  # File Manager
+  # --- File Manager ---
   treemacs
   treemacs-nerd-icons
-  treemacs-icons-dired
-  treemacs-magit
-  activities
+  # treemacs-magit
+  dired-hide-dotfiles
+
+  # --- Git ---
+  magit
   diff-hl
   
-  # Git
-  magit
-  difftastic
+  # --- Programming Support ---
+  flycheck
+  rainbow-mode
+  rainbow-delimiters
+  hl-todo
   
-  # Language Support
+  # --- Help System ---
+  helpful
+  
+  # --- Search Enhancement ---
+  anzu
+  
+  # --- Language Support (Tree-sitter) ---
   (treesit-grammars.with-grammars (p: with p; [
     tree-sitter-bash
     tree-sitter-c
@@ -82,53 +99,42 @@ with epkgs; [
     tree-sitter-typescript
     tree-sitter-yaml
   ]))
-  eglot
-  aggressive-indent
-  reformatter
   
-  # Language Modes
-  applescript-mode
-  clojure-mode
-  clojure-ts-mode
-  cider
-  flycheck-clj-kondo
-  dockerfile-mode
-  eros
-  fish-mode
-  go-mode
-  lua-mode
+  # --- LSP ---
+  eglot
+  
+  # --- Language Modes ---
   markdown-mode
-  edit-indirect
   nix-ts-mode
   rust-mode
-  cargo
+  go-mode
+  lua-mode
+  dockerfile-mode
+  web-mode
+  emmet-mode
   
-  # Development
-  flycheck
-  exec-path-from-shell
-  
-  # Org Mode
+  # --- Org Mode ---
   org-bullets
-  org-side-tree
   org-modern
   org-appear
   denote
   consult-notes
   olivetti
+  htmlize
   
-  # Highlight
-  rainbow-mode
-  rainbow-delimiters
-  hl-todo
-  
-  # Emacs Lisp Development
+  # --- Elisp Development ---
   macrostep
   elisp-demos
   highlight-defined
   
-  # Utility
-  ns-auto-titlebar # macOS向けだが、Linuxでもタイトルバー制御に使える場合がある
+  # --- Optional: Snippets ---
+  # yasnippet
+  # yasnippet-snippets
+  
+  # --- Optional: Auto-format ---
+  # apheleia
+  
 ] ++ lib.optionals (!isAndroid) [
-  # Desktop-only packages
-  # eglot-booster # ビルドが必要な場合はここに追加
+  # Desktop only
+  pdf-tools
 ]
