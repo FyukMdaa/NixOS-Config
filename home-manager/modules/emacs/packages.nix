@@ -18,7 +18,7 @@ with epkgs; [
   visual-regexp
   avy
   expand-region
-  # ws-butler
+  ws-butler
   
   # --- UI / Theme ---
   ef-themes
@@ -54,7 +54,7 @@ with epkgs; [
   # --- File Manager ---
   treemacs
   treemacs-nerd-icons
-  # treemacs-magit
+  treemacs-magit
   dired-hide-dotfiles
 
   # --- Git ---

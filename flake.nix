@@ -11,7 +11,17 @@
     };
     
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+        
     nh.url = "github:viperML/nh";
 
     nickel.url = "github:tweag/nickel";
@@ -32,7 +42,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, niri, floorp, emacs-overlay, nix-on-droid, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, sops-nix, fenix, niri, floorp, emacs-overlay, nix-on-droid, nixos-hardware, ... }@inputs:
     let
       system = "x86_64-linux";
       
@@ -44,6 +54,12 @@
             config.allowUnfree = true;
           };
         })
+        
+        # Sops-nix
+        sops-nix.nixosModules.sops
+
+        # Fenix overlay
+        fenix.overlays.default
         
         # Niri overlay
         niri.overlays.niri
