@@ -10,6 +10,6 @@
     owner = config.users.users.fyukmdaa.name;
     group = config.users.users.fyukmdaa.group;
     mode = "0600";
-    path = "/home/fyukmdaa/.ssh/github_ed25519";
+    path = "/home/fyukmdaa/.ssh/id_ed25519";
   };
 }
