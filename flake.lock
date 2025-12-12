@@ -94,11 +94,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1765447943,
-        "narHash": "sha256-0D3QvJYXOIur/ZiuDHQ8Nhb1/CSwqQwgz9D7SJ9nn6g=",
+        "lastModified": 1765448306,
+        "narHash": "sha256-+7znzE6rSMsMElNi6/yeqhTnbsXIZ6ZNDVOj6THQIOg=",
         "owner": "fyukmdaa",
         "repo": "floorp-flake",
-        "rev": "71c5d3f4c1a7fd4fae3fab68b67a50a268a8eddf",
+        "rev": "c226aa0c11d7494b5063c6a13d848aa80a086758",
         "type": "github"
       },
       "original": {
@@ -136,11 +136,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765337252,
-        "narHash": "sha256-HuWQp8fM25fyWflbuunQkQI62Hg0ecJxWD52FAgmxqY=",
+        "lastModified": 1765480374,
+        "narHash": "sha256-HlbvQAqLx7WqZFFQZ8nu5UUJAVlXiV/kqKbyueA8srw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "13cc1efd78b943b98c08d74c9060a5b59bf86921",
+        "rev": "39cb677ed9e908e90478aa9fe5f3383dfc1a63f3",
         "type": "github"
       },
       "original": {

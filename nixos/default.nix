@@ -11,6 +11,7 @@
     ./modules/packages.nix
     ./modules/security.nix
     ./modules/services.nix
+    ./modules/sops.nix
     ./modules/systemd.nix
     ./modules/time.nix
     ./modules/users.nix
