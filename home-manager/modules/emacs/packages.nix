@@ -18,7 +18,6 @@ with epkgs; [
   visual-regexp
   avy
   expand-region
-  ws-butler
   
   # --- UI / Theme ---
   ef-themes
