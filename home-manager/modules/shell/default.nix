@@ -8,6 +8,7 @@
     ./packages/fzf.nix
     ./packages/git.nix
     ./packages/ripgrep.nix
+    ./packages/ssh.nix
     ./packages/starship.nix
     ./packages/tmux.nix
     ./packages/wget.nix

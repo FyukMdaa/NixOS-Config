@@ -1,0 +1,8 @@
+keys:
+  - &fyukmdaa age1mrcja2jp77mq2edc4klz7yn4ps94r2mtuv8q4l8lnct9tue87g0qfcvm6u
+
+creation_rules:
+  - path_regex: secrets/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *fyukmdaa
