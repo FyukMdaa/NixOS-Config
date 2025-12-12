@@ -54,9 +54,6 @@
             config.allowUnfree = true;
           };
         })
-        
-        # Sops-nix
-        sops-nix.nixosModules.sops
 
         # Fenix overlay
         fenix.overlays.default
@@ -96,6 +93,8 @@
           modules = [
             ./hosts/Inspiron14-5445
             ./nixos
+
+            sops-nix.nixosModules.sops
             
             home-manager.nixosModules.home-manager
             {

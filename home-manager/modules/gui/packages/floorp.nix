@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    floorp
+    floorp-bin
   ];
 
   # Floorpの環境変数

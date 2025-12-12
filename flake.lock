@@ -94,11 +94,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1765442224,
-        "narHash": "sha256-hHrvRJEiUHg7w/6PfQYQki7JaN+/9oUxfkvR0gvvDZw=",
+        "lastModified": 1765447943,
+        "narHash": "sha256-0D3QvJYXOIur/ZiuDHQ8Nhb1/CSwqQwgz9D7SJ9nn6g=",
         "owner": "fyukmdaa",
         "repo": "floorp-flake",
-        "rev": "bf92082c686ce06e24f9c617a3975eb96e03125b",
+        "rev": "71c5d3f4c1a7fd4fae3fab68b67a50a268a8eddf",
         "type": "github"
       },
       "original": {
