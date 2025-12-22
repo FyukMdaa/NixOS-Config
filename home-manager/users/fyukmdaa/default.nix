@@ -1,7 +1,10 @@
 { config, pkgs, emacs-d, isDesktop ? false, inputs, ... }:
 
 {
-  imports = [ ../../default.nix ];
+  imports = [ 
+    ../../default.nix
+    inputs.twist.homeModules.emacs-twist
+  ];
   
   home = {
     username = "fyukmdaa";
