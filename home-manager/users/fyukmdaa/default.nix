@@ -1,4 +1,4 @@
-{ config, pkgs, isDesktop ? false, inputs, ... }:
+{ config, pkgs, emacs-d, isDesktop ? false, inputs, ... }:
 
 {
   imports = [ ../../default.nix ];

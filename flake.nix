@@ -32,6 +32,8 @@
     };
 
     floorp.url = "github:fyukmdaa/floorp-flake";
+
+    emacs-d.url = "github:fyukmdaa/.emacs.d";
     
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid/release-24.05";
@@ -40,7 +42,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, sops-nix, fenix, niri, floorp, nix-on-droid, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, sops-nix, fenix, niri, floorp, emacs-d,  nix-on-droid, nixos-hardware, ... }@inputs:
     let
       system = "x86_64-linux";
       
