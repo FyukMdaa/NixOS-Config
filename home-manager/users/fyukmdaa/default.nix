@@ -10,8 +10,6 @@
   };
   
   programs.home-manager.enable = true;
-
-  fyukmdaa.emacs.enable = true;
   
   # XDG設定
   xdg = {

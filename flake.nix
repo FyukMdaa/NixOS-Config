@@ -32,8 +32,6 @@
     };
 
     floorp.url = "github:fyukmdaa/floorp-flake";
-
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
     
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid/release-24.05";
@@ -42,7 +40,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, sops-nix, fenix, niri, floorp, emacs-overlay, nix-on-droid, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, sops-nix, fenix, niri, floorp, nix-on-droid, nixos-hardware, ... }@inputs:
     let
       system = "x86_64-linux";
       
@@ -64,9 +62,6 @@
         # Floorp overlay
         floorp.overlays.default
 
-        # Emacs overlay
-        emacs-overlay.overlay
-               
         # Custom overlays
         (import ./overlays)
       ];
