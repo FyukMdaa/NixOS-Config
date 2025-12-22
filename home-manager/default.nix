@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./modules/emacs
     ./modules/shell
     ./modules/gui
     ./modules/p-lang
