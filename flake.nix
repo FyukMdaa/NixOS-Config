@@ -33,6 +33,7 @@
 
     floorp.url = "github:fyukmdaa/floorp-flake";
 
+    twist.url = "github:emacs-twist/twist.nix";
     emacs-d.url = "github:fyukmdaa/.emacs.d";
     
     nix-on-droid = {
@@ -42,7 +43,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, sops-nix, fenix, niri, floorp, emacs-d,  nix-on-droid, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, sops-nix, fenix, niri, floorp, emacs-d, twist, nix-on-droid, nixos-hardware, ... }@inputs:
     let
       system = "x86_64-linux";
       
@@ -100,6 +101,7 @@
                 useUserPackages = true;
                 users.fyukmdaa = import ./home-manager/users/fyukmdaa;
                 extraSpecialArgs = commonSpecialArgs // {
+				  inherit emacs-d;
                   isDesktop = true;
                 };
               };
