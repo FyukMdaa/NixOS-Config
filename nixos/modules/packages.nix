@@ -28,6 +28,7 @@
     
     # その他
     fastfetch
+    input-remapper
   ];
   
   # システムワイドで有効化するプログラム
