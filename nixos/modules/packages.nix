@@ -22,13 +22,11 @@
     vim
     
     # ファイル管理
-    tree
     zip
     unzip
     
     # その他
     fastfetch
-    input-remapper
   ];
   
   # システムワイドで有効化するプログラム
