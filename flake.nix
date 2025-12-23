@@ -5,11 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
-
-    nixpkgs-wayland= {
-      url = "github:nix-community/nixpkgs-wayland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -49,7 +44,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-wayland, home-manager, sops-nix, fenix, niri, floorp, emacs-d, twist, nix-on-droid, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, sops-nix, fenix, niri, floorp, emacs-d, twist, nix-on-droid, nixos-hardware, ... }@inputs:
     let
       system = "x86_64-linux";
       
@@ -61,9 +56,6 @@
             config.allowUnfree = true;
           };
         })
-
-        # Wayland overlay
-        nixpkgs-wayland.overlay
 
         # Fenix overlay
         fenix.overlays.default
