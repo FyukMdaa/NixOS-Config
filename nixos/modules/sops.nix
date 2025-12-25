@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  sops.age.keyFile = "~/.config/sops/age/keys.txt";
+  sops.age.keyFile = "/home/fyukmdaa/.config/sops/age/keys.txt";
 
   # デフォルトのsecretsファイル
   sops.defaultSopsFile = ../../secrets/ssh.yaml;
