@@ -649,6 +649,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_7": {
+      "locked": {
+        "lastModified": 1766651565,
+        "narHash": "sha256-QEhk0eXgyIqTpJ/ehZKg9IKS7EtlWxF3N7DXy42zPfU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3e2499d5539c16d0d173ba53552a4ff8547f4539",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nmd": {
       "flake": false,
       "locked": {
@@ -770,6 +786,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_6",
         "nixpkgs-stable": "nixpkgs-stable_3",
+        "skk-dict": "skk-dict",
         "sops-nix": "sops-nix",
         "twist": "twist_2"
       }
@@ -825,6 +842,24 @@
       "original": {
         "owner": "andreymatin",
         "repo": "scss-reset",
+        "type": "github"
+      }
+    },
+    "skk-dict": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_7"
+      },
+      "locked": {
+        "lastModified": 1766910689,
+        "narHash": "sha256-2L0cdeCW/h8U2rVnZ4z6Z41VM+30mRdUX9YESUFwiMA=",
+        "owner": "fyukmdaa",
+        "repo": "skk-dict-flake",
+        "rev": "a265b46557a268cc7d9d39e42c7d719ea533a92f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fyukmdaa",
+        "repo": "skk-dict-flake",
         "type": "github"
       }
     },

@@ -34,6 +34,8 @@
 
     floorp.url = "github:fyukmdaa/floorp-flake";
 
+    skk-dict.url = "github:fyukmdaa/skk-dict-flake";
+
     twist.url = "github:emacs-twist/twist.nix";
     emacs-d.url = "github:fyukmdaa/.emacs.d";
 
@@ -44,7 +46,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, sops-nix, fenix, niri, floorp, emacs-d, twist, nix-on-droid, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, sops-nix, fenix, niri, floorp, skk-dict, emacs-d, twist, nix-on-droid, nixos-hardware, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -65,6 +67,9 @@
 
         # Floorp overlay
         floorp.overlays.default
+
+        # SKK-dict overlay
+        skk-dict.overlays.default
 
         # Custom overlays
         (import ./overlays)

@@ -16,19 +16,21 @@
     nh
     nixel
     nickel
-    
+    sops
+    nix-prefetch-git
+
     # エディタ
     micro
     vim
-    
+
     # ファイル管理
     zip
     unzip
-    
+
     # その他
     fastfetch
   ];
-  
+
   # システムワイドで有効化するプログラム
   programs = {
     zsh.enable = true;
