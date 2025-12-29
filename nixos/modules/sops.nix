@@ -12,4 +12,9 @@
     mode = "0600";
     path = "/home/fyukmdaa/.ssh/id_ed25519";
   };
+ sops.secrets.github_token = {
+    owner = config.users.users.fyukmdaa.name;
+    mode = "0600";
+    path = "/home/fyukmdaa/.config/nix/github-token";
+  };
 }
