@@ -7,6 +7,8 @@
     ./packages/fd.nix
     ./packages/fzf.nix
     ./packages/git.nix
+    ./packages/gh.nix
+    ./packages/ghq.nix
     ./packages/ripgrep.nix
     ./packages/ssh.nix
     ./packages/starship.nix
