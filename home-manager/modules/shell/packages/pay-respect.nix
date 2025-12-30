@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    pay-respects
-  ];
+  programs.pay-respects = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 }

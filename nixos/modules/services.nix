@@ -42,7 +42,8 @@
   services = {
     # DBus
     dbus.enable = true;
-    
+	# UPower
+    upower.enable = true;
     # GNOME Keyring
     gnome.gnome-keyring.enable = true;
   };
