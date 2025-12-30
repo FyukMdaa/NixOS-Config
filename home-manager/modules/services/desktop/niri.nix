@@ -78,6 +78,7 @@
     # 起動時実行
     spawn-at-startup = [
       { command = [ "mako" ]; }
+      { command = [ "swayosd-server" ]; }
       { command = [ "fcitx5" "-d" ]; }
       { command = [ "swww-daemon" ]; }
       {
