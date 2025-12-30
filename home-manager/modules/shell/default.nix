@@ -10,6 +10,7 @@
     ./packages/gitui.nix
     ./packages/gh.nix
     ./packages/ghq.nix
+    ./packages/pay-respect.nix
     ./packages/ripgrep.nix
     ./packages/ssh.nix
     ./packages/starship.nix
