@@ -1,1 +1,4 @@
-["zenn-cli"]
+[
+  "zenn-cli",
+  "battery-level-cli"
+]

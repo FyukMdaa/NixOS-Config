@@ -10,5 +10,6 @@ in
     ni
     node2nix
     nodePkgs.zenn-cli
+    nodePkgs.battery-level-cli
   ];
 }
