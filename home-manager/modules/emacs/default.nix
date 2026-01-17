@@ -6,6 +6,7 @@
     createInitFile = true;
     createManifestFile = true;
 
-    config = emacs-d.packages.${pkgs.system}.default;
+    config = emacs-d.packages.${pkgs.system}.env;
+    earlyInitFile = emacs-d.packages.${pkgs.system}.early-init;
   };
 }

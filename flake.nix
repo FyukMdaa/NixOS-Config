@@ -37,7 +37,7 @@
     skk-dict.url = "github:fyukmdaa/skk-dict-flake";
 
     twist.url = "github:emacs-twist/twist.nix";
-    emacs-d.url = "github:fyukmdaa/.emacs.d";
+    emacs-d.url = "github:fyukmdaa/emacs-config";
 
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid/release-24.05";
