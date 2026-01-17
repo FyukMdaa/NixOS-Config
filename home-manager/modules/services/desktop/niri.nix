@@ -136,6 +136,10 @@
       "Mod+4".action.focus-workspace = 4;
       "Mod+5".action.focus-workspace = 5;
 
+      # ワークスペースフォーカス
+      "Mod+G".action.focus-workspace-up = { };
+      "Mod+V".action.focus-workspace-down = { };
+
       # ウィンドウをワークスペースに移動
       "Mod+Shift+1".action.move-column-to-workspace = 1;
       "Mod+Shift+2".action.move-column-to-workspace = 2;
