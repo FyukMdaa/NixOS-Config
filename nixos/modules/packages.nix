@@ -18,6 +18,16 @@
     nickel
     sops
     nix-prefetch-git
+    nix-inspect
+    nix-update
+    nix-output-monitor
+    nix-init
+    nurl
+    nix-health
+    nix-index
+    nvd
+    statix
+    deadnix
 
     # エディタ
     micro
