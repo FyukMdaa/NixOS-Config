@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.ssh = {
     enable = true;
-    
+
     matchBlocks = {
       "github.com" = {
         hostname = "github.com";
@@ -12,7 +14,7 @@
       };
     };
   };
-  
+
   # SSH agentを有効化
   services.ssh-agent.enable = true;
 }

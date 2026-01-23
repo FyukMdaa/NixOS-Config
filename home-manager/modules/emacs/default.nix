@@ -1,5 +1,9 @@
-{ config, pkgs, emacs-d, ... }:
 {
+  config,
+  pkgs,
+  emacs-d,
+  ...
+}: {
   programs.emacs-twist = {
     enable = true;
     emacsclient.enable = true;

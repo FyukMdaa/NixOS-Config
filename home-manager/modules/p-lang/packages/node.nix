@@ -1,11 +1,12 @@
-{ config, pkgs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   nodePkgs = pkgs.callPackage ./node2nix {
     inherit pkgs;
   };
-in
-{
+in {
   home.packages = with pkgs; [
     ni
     node2nix

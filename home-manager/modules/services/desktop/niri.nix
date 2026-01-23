@@ -1,8 +1,11 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   programs.niri.package = pkgs.niri-stable;
-  
+
   programs.niri.settings = {
     # 入力デバイス
     input = {
@@ -15,7 +18,7 @@
       touchpad = {
         tap = true;
         natural-scroll = true;
-        dwt = true;  # disable-while-typing
+        dwt = true; # disable-while-typing
         accel-speed = 0.3;
       };
 
@@ -43,12 +46,12 @@
       center-focused-column = "never";
 
       preset-column-widths = [
-        { proportion = 1.0 / 3.0; }
-        { proportion = 1.0 / 2.0; }
-        { proportion = 2.0 / 3.0; }
+        {proportion = 1.0 / 3.0;}
+        {proportion = 1.0 / 2.0;}
+        {proportion = 2.0 / 3.0;}
       ];
 
-      default-column-width = { proportion = 1.0 / 2.0; };
+      default-column-width = {proportion = 1.0 / 2.0;};
 
       border = {
         enable = true;
@@ -77,13 +80,14 @@
 
     # 起動時実行
     spawn-at-startup = [
-      { command = [ "mako" ]; }
-      { command = [ "swayosd-server" ]; }
-      { command = [ "fcitx5" "-d" ]; }
-      { command = [ "swww-daemon" ]; }
+      {command = ["mako"];}
+      {command = ["swayosd-server"];}
+      {command = ["fcitx5" "-d"];}
+      {command = ["swww-daemon"];}
       {
         command = [
-          "sh" "-c"
+          "sh"
+          "-c"
           "sleep 2 && swww img ${./wallpapers/nixos-wall.png} --transition-type=fade --transition-fps=60"
         ];
       }
@@ -91,32 +95,32 @@
 
     # ワークスペース
     workspaces = {
-      "1" = { };
-      "2" = { };
-      "3" = { };
-      "4" = { };
-      "5" = { };
+      "1" = {};
+      "2" = {};
+      "3" = {};
+      "4" = {};
+      "5" = {};
     };
 
     # キーバインド
     binds = with config.lib.niri.actions; {
       # 基本操作
-      "Mod+Return".action.spawn = [ "ghostty" ];
-      "Mod+D".action.spawn = [ "wofi" "--show" "drun" ];
-      "Mod+Q".action.close-window = { };
-      "Mod+O".action.toggle-overview = { };
+      "Mod+Return".action.spawn = ["ghostty"];
+      "Mod+D".action.spawn = ["wofi" "--show" "drun"];
+      "Mod+Q".action.close-window = {};
+      "Mod+O".action.toggle-overview = {};
 
       # ウィンドウフォーカス
-      "Mod+B".action.focus-column-left = { };
-      "Mod+F".action.focus-column-right = { };
-      "Mod+N".action.focus-window-down = { };
-      "Mod+P".action.focus-window-up = { };
+      "Mod+B".action.focus-column-left = {};
+      "Mod+F".action.focus-column-right = {};
+      "Mod+N".action.focus-window-down = {};
+      "Mod+P".action.focus-window-up = {};
 
       # ウィンドウ移動
-      "Mod+Shift+B".action.move-column-left = { };
-      "Mod+Shift+F".action.move-column-right = { };
-      "Mod+Shift+N".action.move-window-down = { };
-      "Mod+Shift+P".action.move-window-up = { };
+      "Mod+Shift+B".action.move-column-left = {};
+      "Mod+Shift+F".action.move-column-right = {};
+      "Mod+Shift+N".action.move-window-down = {};
+      "Mod+Shift+P".action.move-window-up = {};
 
       # ウィンドウサイズ調整
       "Mod+Ctrl+B".action.set-column-width = "-10%";
@@ -125,9 +129,9 @@
       "Mod+Ctrl+P".action.set-window-height = "-10%";
 
       # プリセット幅
-      "Mod+R".action.switch-preset-column-width = { };
-      "Mod+M".action.maximize-column = { };
-      "Mod+Shift+M".action.fullscreen-window = { };
+      "Mod+R".action.switch-preset-column-width = {};
+      "Mod+M".action.maximize-column = {};
+      "Mod+Shift+M".action.fullscreen-window = {};
 
       # ワークスペース切り替え
       "Mod+1".action.focus-workspace = 1;
@@ -137,8 +141,8 @@
       "Mod+5".action.focus-workspace = 5;
 
       # ワークスペースフォーカス
-      "Mod+G".action.focus-workspace-up = { };
-      "Mod+V".action.focus-workspace-down = { };
+      "Mod+G".action.focus-workspace-up = {};
+      "Mod+V".action.focus-workspace-down = {};
 
       # ウィンドウをワークスペースに移動
       "Mod+Shift+1".action.move-column-to-workspace = 1;
@@ -148,27 +152,27 @@
       "Mod+Shift+5".action.move-column-to-workspace = 5;
 
       # モニター間移動
-      "Mod+Comma".action.focus-monitor-left = { };
-      "Mod+Period".action.focus-monitor-right = { };
-      "Mod+Shift+Comma".action.move-column-to-monitor-left = { };
-      "Mod+Shift+Period".action.move-column-to-monitor-right = { };
+      "Mod+Comma".action.focus-monitor-left = {};
+      "Mod+Period".action.focus-monitor-right = {};
+      "Mod+Shift+Comma".action.move-column-to-monitor-left = {};
+      "Mod+Shift+Period".action.move-column-to-monitor-right = {};
 
       # システム
-      "Mod+Shift+E".action.quit = { };
+      "Mod+Shift+E".action.quit = {};
 
       # スクリーンショット
-      "Print".action.screenshot = { };
-      "Shift+Print".action.screenshot-screen = { };
-      "Alt+Print".action.screenshot-window = { };
+      "Print".action.screenshot = {};
+      "Shift+Print".action.screenshot-screen = {};
+      "Alt+Print".action.screenshot-window = {};
 
       # 音量調整（キーコードは環境に合わせて調整）
-      "XF86AudioRaiseVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+" ];
-      "XF86AudioLowerVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-" ];
-      "XF86AudioMute".action.spawn = [ "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle" ];
+      "XF86AudioRaiseVolume".action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"];
+      "XF86AudioLowerVolume".action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"];
+      "XF86AudioMute".action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
 
       # 明るさ調整
-      "XF86MonBrightnessUp".action.spawn = [ "brightnessctl" "set" "5%+" ];
-      "XF86MonBrightnessDown".action.spawn = [ "brightnessctl" "set" "5%-" ];
+      "XF86MonBrightnessUp".action.spawn = ["brightnessctl" "set" "5%+"];
+      "XF86MonBrightnessDown".action.spawn = ["brightnessctl" "set" "5%-"];
     };
 
     # カーソルテーマ
@@ -213,14 +217,14 @@
         epsilon = 0.0001;
       };
     };
-        	    
+
     # ウィンドウルール
     window-rules = [
       {
         matches = [
-          { app-id = "^org.keepassxc.KeePassXC$"; }
+          {app-id = "^org.keepassxc.KeePassXC$";}
         ];
-        default-column-width = { proportion = 0.5; };
+        default-column-width = {proportion = 0.5;};
       }
     ];
 
@@ -233,7 +237,7 @@
 
   # 必要なパッケージ
   home.packages = with pkgs; [
-    brightnessctl  # 明るさ調整
+    brightnessctl # 明るさ調整
     mako
     swww
   ];

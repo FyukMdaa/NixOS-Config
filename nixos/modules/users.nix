@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   users.users.fyukmdaa = {
     isNormalUser = true;
     description = "fyukmdaa";

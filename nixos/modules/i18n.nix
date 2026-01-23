@@ -1,10 +1,8 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # ロケール設定
   i18n = {
     defaultLocale = "ja_JP.UTF-8";
-    
+
     extraLocaleSettings = {
       LC_ADDRESS = "ja_JP.UTF-8";
       LC_IDENTIFICATION = "ja_JP.UTF-8";
@@ -16,7 +14,7 @@
       LC_TELEPHONE = "ja_JP.UTF-8";
       LC_TIME = "ja_JP.UTF-8";
     };
-    
+
     # 日本語入力 (Fcitx5)
     inputMethod = {
       enable = true;
@@ -31,7 +29,7 @@
       };
     };
   };
-  
+
   # コンソール設定
   console = {
     font = "Lat2-Terminus16";

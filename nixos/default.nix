@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./modules/boot.nix
     ./modules/cachix.nix
@@ -16,7 +18,7 @@
     ./modules/time.nix
     ./modules/users.nix
   ];
-  
+
   # システムバージョン
   system.stateVersion = "25.05";
 }
