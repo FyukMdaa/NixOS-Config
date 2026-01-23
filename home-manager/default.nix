@@ -1,6 +1,10 @@
-{ config, pkgs, isDesktop ? false, inputs, ... }:
-
 {
+  config,
+  pkgs,
+  isDesktop ? false,
+  inputs,
+  ...
+}: {
   imports = [
     ./modules/emacs
     ./modules/shell

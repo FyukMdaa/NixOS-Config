@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
-    options = [ "--cmd z" ];
+    options = ["--cmd z"];
   };
 }

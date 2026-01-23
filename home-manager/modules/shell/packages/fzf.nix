@@ -1,10 +1,12 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    
+
     defaultCommand = "fd --type f --hidden --follow --exclude .git";
     defaultOptions = [
       "--height 40%"
@@ -12,7 +14,7 @@
       "--border"
       "--inline-info"
     ];
-    
+
     fileWidgetCommand = "fd --type f --hidden --follow --exclude .git";
     changeDirWidgetCommand = "fd --type d --hidden --follow --exclude .git";
   };
