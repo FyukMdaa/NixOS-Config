@@ -37,6 +37,10 @@
 
     # その他
     fastfetch
+    qmk
+    via
+    dfu-util
+    vial
   ];
 
   # システムワイドで有効化するプログラム

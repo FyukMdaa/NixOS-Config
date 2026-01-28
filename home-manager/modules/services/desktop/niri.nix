@@ -237,6 +237,7 @@
 
   # 必要なパッケージ
   home.packages = with pkgs; [
+    xwayland-satellite-unstable
     brightnessctl # 明るさ調整
     mako
     swww

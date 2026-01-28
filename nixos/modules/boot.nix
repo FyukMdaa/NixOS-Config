@@ -9,7 +9,7 @@
     };
 
     # Zen kernel
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.stable.linuxPackages_zen;
 
     # ファイルシステムサポート
     supportedFilesystems = ["xfs" "btrfs" "ntfs"];

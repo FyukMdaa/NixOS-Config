@@ -7,6 +7,7 @@
     ./modules/boot.nix
     ./modules/cachix.nix
     ./modules/fonts.nix
+    ./modules/hardware.nix
     ./modules/i18n.nix
     ./modules/networking.nix
     ./modules/nix.nix
