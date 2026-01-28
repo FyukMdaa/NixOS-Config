@@ -8,6 +8,10 @@
       "networkmanager"
       "video"
       "audio"
+      "plugdev"
+      "dialout"
+      "uinput"
+      "input"
     ];
   };
 }

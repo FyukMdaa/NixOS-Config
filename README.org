@@ -16,9 +16,6 @@ nh os switch .#hostname
 
 ** Todo
 - [ ] nix-on-droid用のconfigを構築する
-- [ ] wayland-overlayの導入
 - [ ] ewwの導入
 - [ ] sddmにテーマを導入
 - [ ] ghosttyのconfigを書く
-- [ ] emacsの環境を洗練させる(場合によってはtwist.nixを導入)
-- [ ] skkのconfigを書く
