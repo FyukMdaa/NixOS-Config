@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./packages/floorp.nix
-    ./packages/wezterm.nix
   ];
 
   # GUI用の基本パッケージ
