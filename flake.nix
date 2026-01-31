@@ -90,7 +90,8 @@
     ];
 
     pkgs = import nixpkgs {
-      inherit system overlays;
+      localSystem = system;
+      inherit overlays;
       config.allowUnfree = true;
     };
 
@@ -102,7 +103,7 @@
     # NixOS Configurations
     nixosConfigurations = {
       Inspiron14-5445 = nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
+        inherit pkgs;
         specialArgs =
           commonSpecialArgs
           // {
@@ -134,7 +135,7 @@
         ];
       };
       Inspiron-3250 = nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
+        inherit pkgs;
         specialArgs =
           commonSpecialArgs
           // {
@@ -170,7 +171,7 @@
     # Nix-on-Droid Configuration
     nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
       pkgs = import nixpkgs {
-        system = "aarch64-linux";
+        localSystem = "aarch64-linux";
         config.allowUnfree = true;
       };
       modules = [
