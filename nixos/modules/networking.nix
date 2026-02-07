@@ -6,7 +6,7 @@
   networking = {
     hostName = hostname;
     networkmanager.enable = true;
-    networkmanager.dns = "none"; 
+    networkmanager.dns = "default"; 
 
     # DNS設定
     nameservers = [

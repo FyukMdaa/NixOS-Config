@@ -5,9 +5,8 @@
 ** ディレクトリ構成
 - hosts ::
   - Inspiron14-5445 :: メインノートPC
-  - veux :: RedmiNote11Pro5G(nix-on-droid)
 - nixos :: configuration.nixをモジュール化
-- home-manager ::
+- home-manager :: home-manager以外の何もでもない
 - overlays :: カスタムオーバーレイを記述
 ** インストール方法
 #+BEGIN_SRC shell
@@ -15,7 +14,7 @@ nh os switch .#hostname
 #+END_SRC
 
 ** Todo
-- [ ] nix-on-droid用のconfigを構築する
 - [ ] ewwの導入
 - [ ] sddmにテーマを導入
 - [ ] ghosttyのconfigを書く
+- [ ] 構造をよりシンプルで機能的に
