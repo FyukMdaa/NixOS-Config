@@ -134,59 +134,6 @@
           }
         ];
       };
-      Inspiron-3250 = nixpkgs.lib.nixosSystem {
-        inherit pkgs;
-        specialArgs =
-          commonSpecialArgs
-          // {
-            hostname = "Inspiron-3250";
-          };
-        modules = [
-          ./hosts/Inspiron-3250
-          ./nixos
-
-          sops-nix.nixosModules.sops
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              sharedModules = [
-                inputs.sops-nix.homeManagerModules.sops
-              ];
-              users.fyukmdaa = import ./home-manager/users/fyukmdaa;
-              extraSpecialArgs =
-                commonSpecialArgs
-                // {
-                  inherit emacs-d;
-                  isDesktop = true;
-                };
-            };
-          }
-        ];
-      };
-    };
-
-    # Nix-on-Droid Configuration
-    nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
-      pkgs = import nixpkgs {
-        localSystem = "aarch64-linux";
-        config.allowUnfree = true;
-      };
-      modules = [
-        ./nix-on-droid
-        {
-          home-manager = {
-            config = import ./home-manager/users/fyukmdaa;
-            extraSpecialArgs =
-              commonSpecialArgs
-              // {
-                isDesktop = false;
-              };
-          };
-        }
-      ];
     };
   };
 }

@@ -1,9 +1,7 @@
 keys:
-  - &fyukmdaa age1mrcja2jp77mq2edc4klz7yn4ps94r2mtuv8q4l8lnct9tue87g0qfcvm6u
-  - &inspiron3250 age13wnde2pl0l20q4dn6u9dalzx5uyrrnwkhlpwmz2zwq3c4c3x09qsd0hec2
+  - &inspiron14 age1mrcja2jp77mq2edc4klz7yn4ps94r2mtuv8q4l8lnct9tue87g0qfcvm6u
 creation_rules:
   - path_regex: secrets/[^/]+\.yaml$
     key_groups:
       - age:
-          - *fyukmdaa
-          - *inspiron3250
+          - *inspiron14
