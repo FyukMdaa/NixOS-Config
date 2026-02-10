@@ -1,139 +1,94 @@
 {
-  description = "My NixOS and Nix-on-Droid Configuration";
+  description = "My NixOS Configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nh.url = "github:viperML/nh";
-
-    nickel.url = "github:tweag/nickel";
-
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     floorp.url = "github:fyukmdaa/floorp-flake";
-
     skk-dict.url = "github:fyukmdaa/skk-dict-flake";
-
     twist.url = "github:emacs-twist/twist.nix";
     emacs-d.url = "github:fyukmdaa/emacs-config";
-
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    sops-nix,
-    fenix,
-    niri,
-    floorp,
-    skk-dict,
-    emacs-d,
-    twist,
-    nix-on-droid,
-    nixos-hardware,
-    ...
-  } @ inputs: let
-    system = "x86_64-linux";
+  outputs = inputs @ { self, nixpkgs, flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } (top@{ config, withSystem, ... }: {
 
-    overlays = [
-      # Stable packages overlay
-      (final: prev: {
-        stable = import nixpkgs-stable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      })
+      systems = [ "x86_64-linux" ];
 
-      # Fenix overlay
-      fenix.overlays.default
+      perSystem = { config, self', inputs', pkgs, system, ... }: {
+        formatter = pkgs.alejandra;
+      };
 
-      # Niri overlay
-      niri.overlays.niri
+      flake.nixosConfigurations.Inspiron14-5445 = withSystem "x86_64-linux" ({ pkgs, inputs', system, ... }:  # ← inputs' を受け取る
+        let
+          customPkgs = import top.inputs.nixpkgs {
+            inherit system;
+            overlays = [
+              (final: prev: {
+                stable = import top.inputs.nixpkgs-stable {
+                  inherit system;
+                  config.allowUnfree = true;
+                };
+              })
+              top.inputs.fenix.overlays.default
+              top.inputs.niri.overlays.niri
+              top.inputs.floorp.overlays.default
+              top.inputs.skk-dict.overlays.default
+              (import ./overlays)
+            ];
+            config.allowUnfree = true;
+          };
+        in
+        nixpkgs.lib.nixosSystem {
+          pkgs = customPkgs;
 
-      # Floorp overlay
-      floorp.overlays.default
-
-      # SKK-dict overlay
-      skk-dict.overlays.default
-
-      # Custom overlays
-      (import ./overlays)
-    ];
-
-    pkgs = import nixpkgs {
-      localSystem = system;
-      inherit overlays;
-      config.allowUnfree = true;
-    };
-
-    # 共通の specialArgs
-    commonSpecialArgs = {
-      inherit inputs;
-    };
-  in {
-    # NixOS Configurations
-    nixosConfigurations = {
-      Inspiron14-5445 = nixpkgs.lib.nixosSystem {
-        inherit pkgs;
-        specialArgs =
-          commonSpecialArgs
-          // {
+          specialArgs = {
+            inherit (top) inputs;
             hostname = "Inspiron14-5445";
           };
-        modules = [
-          ./hosts/Inspiron14-5445
-          ./nixos
 
-          sops-nix.nixosModules.sops
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              sharedModules = [
-                inputs.sops-nix.homeManagerModules.sops
-              ];
-              users.fyukmdaa = import ./home-manager/users/fyukmdaa;
-              extraSpecialArgs =
-                commonSpecialArgs
-                // {
-                  inherit emacs-d;
-                  isDesktop = true;
+          modules = [
+            ./hosts/Inspiron14-5445
+            ./nixos
+            top.inputs.sops-nix.nixosModules.sops
+            top.inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useUserPackages = true;
+                useGlobalPkgs = true;
+                sharedModules = [ top.inputs.sops-nix.homeManagerModules.sops ];
+                users.fyukmdaa = import ./home-manager/users/fyukmdaa;
+                extraSpecialArgs = {
+                  inherit (top) inputs;
+                  inherit (top.inputs) emacs-d;
                 };
-            };
-          }
-        ];
-      };
-    };
-  };
+              };
+            }
+          ];
+        }
+      );
+
+    });
 }
