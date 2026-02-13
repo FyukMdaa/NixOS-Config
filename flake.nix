@@ -9,6 +9,27 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-facter.url = "github:numtide/nixos-facter-modules";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -32,63 +53,24 @@
     emacs-d.url = "github:fyukmdaa/emacs-config";
   };
 
-  outputs = inputs @ { self, nixpkgs, flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } (top@{ config, withSystem, ... }: {
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = ["x86_64-linux"];
 
-      systems = [ "x86_64-linux" ];
+      imports = [
+        inputs.treefmt-nix.flakeModule
 
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
-        formatter = pkgs.alejandra;
+        ./flake
+        ./pkgs
+        ./hosts
+      ];
+
+      perSystem = {...}: {
+        treefmt.config = {
+          projectRootFile = "flake.nix";
+
+          programs.alejandra.enable = true;
+        };
       };
-
-      flake.nixosConfigurations.Inspiron14-5445 = withSystem "x86_64-linux" ({ pkgs, inputs', system, ... }:  # ← inputs' を受け取る
-        let
-          customPkgs = import top.inputs.nixpkgs {
-            inherit system;
-            overlays = [
-              (final: prev: {
-                stable = import top.inputs.nixpkgs-stable {
-                  inherit system;
-                  config.allowUnfree = true;
-                };
-              })
-              top.inputs.fenix.overlays.default
-              top.inputs.niri.overlays.niri
-              top.inputs.floorp.overlays.default
-              top.inputs.skk-dict.overlays.default
-              (import ./overlays)
-            ];
-            config.allowUnfree = true;
-          };
-        in
-        nixpkgs.lib.nixosSystem {
-          pkgs = customPkgs;
-
-          specialArgs = {
-            inherit (top) inputs;
-            hostname = "Inspiron14-5445";
-          };
-
-          modules = [
-            ./hosts/Inspiron14-5445
-            ./nixos
-            top.inputs.sops-nix.nixosModules.sops
-            top.inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useUserPackages = true;
-                useGlobalPkgs = true;
-                sharedModules = [ top.inputs.sops-nix.homeManagerModules.sops ];
-                users.fyukmdaa = import ./home-manager/users/fyukmdaa;
-                extraSpecialArgs = {
-                  inherit (top) inputs;
-                  inherit (top.inputs) emacs-d;
-                };
-              };
-            }
-          ];
-        }
-      );
-
-    });
+    };
 }
