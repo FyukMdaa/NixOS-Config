@@ -10,18 +10,11 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-facter.url = "github:numtide/nixos-facter-modules";
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    musnix.url = "github:musnix/musnix";
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,17 +31,12 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    fenix = {
-      url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nh.url = "github:viperML/nh";
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     floorp.url = "github:fyukmdaa/floorp-flake";
-    skk-dict.url = "github:fyukmdaa/skk-dict-flake";
     twist.url = "github:emacs-twist/twist.nix";
     emacs-d.url = "github:fyukmdaa/emacs-config";
   };
@@ -65,7 +53,7 @@
         ./hosts
       ];
 
-      perSystem = {...}: {
+      perSystem = _: {
         treefmt.config = {
           projectRootFile = "flake.nix";
 

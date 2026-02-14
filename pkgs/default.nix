@@ -9,10 +9,8 @@
         };
       })
 
-      inputs.fenix.overlays.default
       inputs.niri.overlays.niri
       inputs.floorp.overlays.default
-      inputs.skk-dict.overlays.default
       (import ./overlays)
     ];
   in {
