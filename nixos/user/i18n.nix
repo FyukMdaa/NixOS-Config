@@ -23,12 +23,25 @@
         addons = with pkgs; [
           fcitx5-gtk
           fcitx5-skk
-          fcitx5-mozc
+          fcitx5-mozc-ut
+          fcitx5-nord
         ];
         waylandFrontend = true;
       };
     };
   };
+
+  # Set skk dictonaries
+  environment.systemPackages = with pkgs.skkDictionaries; [
+    l
+    jinmei
+    fullname
+    geo
+    propernoun
+    station
+    law
+    emoji
+  ];
 
   # コンソール設定
   console = {

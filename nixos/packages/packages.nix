@@ -19,6 +19,7 @@
     nix-inspect
     nix-update
     nix-output-monitor
+    nix-fast-build
     nix-init
     nurl
     nix-health
