@@ -1,13 +1,11 @@
-{lib, ...}: let
-  inherit (lib.filesystem) listFilesRecursive;
-in {
+{inputs, ...}: {
   flake = {
     nixosModules.default = {
-      imports = listFilesRecursive ../nixos;
+      imports = [(inputs.import-tree ../nixos)];
     };
 
     homeModules.default = {
-      imports = listFilesRecursive ../home;
+      imports = [(inputs.import-tree ../home)];
     };
   };
 }
