@@ -1,9 +1,30 @@
-{pkgs, ...}: {
+{ pkgs, lib, ... }: {
   services = {
     # Display Manager
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
+      wayland.compositorCommand = lib.mkForce 
+        "${pkgs.kdePackages.kwin}/bin/kwin_wayland --no-global-shortcuts --no-kactivities --locale1";
+      theme = "sddm-astronaut-theme";
+      extraPackages = [
+        pkgs.kdePackages.kwin
+        pkgs.sddm-astronaut
+        pkgs.bibata-cursors
+        pkgs.kdePackages.qtsvg
+        pkgs.kdePackages.qtmultimedia
+        pkgs.kdePackages.qtvirtualkeyboard
+      ];
+      settings = {
+        Theme = {
+          ThemeDir = "${pkgs.sddm-astronaut}/share/sddm/themes";
+          CursorTheme = "Bibata-Modern-Classic";
+          CursorSize = 24;
+        };
+        General = {
+          GreeterEnvironment = "XCURSOR_PATH=${pkgs.bibata-cursors}/share/icons,XCURSOR_THEME=Bibata-Modern-Classic,XCURSOR_SIZE=24,QT_QUICK_BACKEND=software";
+        };
+      };
     };
 
     # X Server (fallback)
@@ -18,7 +39,7 @@
     # 印刷
     printing.enable = true;
 
-    # 音声
+    # 音声 (Pipewire)
     pulseaudio.enable = false;
     pipewire = {
       enable = true;
@@ -30,6 +51,7 @@
 
     udisks2.enable = true;
 
+    # QMK / VIA 関連
     udev = {
       enable = true;
       packages = with pkgs; [
@@ -40,29 +62,26 @@
       ];
     };
 
-    # DBus
     dbus.enable = true;
-    # UPower
     upower.enable = true;
-    # GNOME Keyring
     gnome.gnome-keyring.enable = true;
   };
 
-  # XDG Portal (ファイル選択やスクリーンシェア等に必要)
+  # XDG Portal
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
-
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config = {
-      common = {
-        default = [ "gtk" ];
-      };
+      common.default = [ "gtk" ];
       niri = {
         default = [ "gtk" ];
         "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
       };
     };
   };
+
+  environment.systemPackages = [
+    pkgs.sddm-astronaut
+    pkgs.bibata-cursors
+  ];
 }
