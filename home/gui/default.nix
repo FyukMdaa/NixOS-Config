@@ -23,5 +23,9 @@
     # その他
     pavucontrol # 音量調整
     networkmanagerapplet
+    audacity
+    stable.openutau
+    ardour
+    stable.krita
   ];
 }

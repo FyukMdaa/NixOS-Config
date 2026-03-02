@@ -48,12 +48,21 @@
     gnome.gnome-keyring.enable = true;
   };
 
-  # XDG Portal (スクリーンシェア等に必要)
+  # XDG Portal (ファイル選択やスクリーンシェア等に必要)
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
     ];
+
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      niri = {
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+      };
+    };
   };
 }
