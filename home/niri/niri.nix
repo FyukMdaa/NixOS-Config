@@ -17,7 +17,7 @@
       touchpad = {
         tap = true;
         natural-scroll = true;
-        dwt = true; # disable-while-typing
+        dwt = true;
         accel-speed = 0.3;
       };
 
@@ -31,11 +31,6 @@
     outputs = {
       "eDP-1" = {
         scale = 1.0;
-        # mode = {
-        #   width = 1920;
-        #   height = 1080;
-        #   refresh = 60.0;
-        # };
       };
     };
 
@@ -79,10 +74,14 @@
 
     # 起動時実行
     spawn-at-startup = [
-      {command = ["mako"];}
-      {command = ["swayosd-server"];}
-      {command = ["fcitx5" "-d"];}
-      {command = ["swww-daemon"];}
+      # mako を削除し、swaync を起動
+      { command = ["swaync"]; }
+      
+      # swayosd-server を起動
+      { command = ["swayosd-server"]; }
+      
+      { command = ["fcitx5" "-d"]; }
+      { command = ["swww-daemon"]; }
     ];
 
     # ワークスペース
@@ -101,6 +100,9 @@
       "Mod+D".action.spawn = ["wofi" "--show" "drun"];
       "Mod+Q".action.close-window = {};
       "Mod+O".action.toggle-overview = {};
+
+      # SwayNC トグル (通知センターを開く)
+      "Mod+T".action.spawn = [ "swaync-client" "-t" ];
 
       # ウィンドウフォーカス
       "Mod+B".action.focus-column-left = {};
@@ -125,16 +127,6 @@
       "Mod+M".action.maximize-column = {};
       "Mod+Shift+M".action.fullscreen-window = {};
 
-      # ワークスペース切り替え
-      "Mod+1".action.focus-workspace = 1;
-      "Mod+2".action.focus-workspace = 2;
-      "Mod+3".action.focus-workspace = 3;
-      "Mod+4".action.focus-workspace = 4;
-      "Mod+5".action.focus-workspace = 5;
-
-      # ワークスペースフォーカス
-      "Mod+G".action.focus-workspace-up = {};
-      "Mod+V".action.focus-workspace-down = {};
 
       # ウィンドウをワークスペースに移動
       "Mod+Shift+1".action.move-column-to-workspace = 1;
@@ -142,6 +134,10 @@
       "Mod+Shift+3".action.move-column-to-workspace = 3;
       "Mod+Shift+4".action.move-column-to-workspace = 4;
       "Mod+Shift+5".action.move-column-to-workspace = 5;
+
+      # ワークスペースフォーカス
+      "Mod+G".action.focus-workspace-up = {};
+      "Mod+V".action.focus-workspace-down = {};
 
       # モニター間移動
       "Mod+Comma".action.focus-monitor-left = {};
@@ -157,19 +153,19 @@
       "Shift+Print".action.screenshot-screen = {};
       "Alt+Print".action.screenshot-window = {};
 
-      # 音量調整（キーコードは環境に合わせて調整）
-      "XF86AudioRaiseVolume".action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"];
-      "XF86AudioLowerVolume".action.spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"];
-      "XF86AudioMute".action.spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
+      # 音量調整
+      "XF86AudioRaiseVolume".action.spawn = [ "swayosd-client" "--output-volume" "raise" ];
+      "XF86AudioLowerVolume".action.spawn = [ "swayosd-client" "--output-volume" "lower" ];
+      "XF86AudioMute".action.spawn = [ "swayosd-client" "--output-volume" "mute-toggle" ];
 
       # 明るさ調整
-      "XF86MonBrightnessUp".action.spawn = ["brightnessctl" "set" "5%+"];
-      "XF86MonBrightnessDown".action.spawn = ["brightnessctl" "set" "5%-"];
+      "XF86MonBrightnessUp".action.spawn = [ "swayosd-client" "--brightness" "raise" ];
+      "XF86MonBrightnessDown".action.spawn = [ "swayosd-client" "--brightness" "lower" ];
     };
 
     # カーソルテーマ
     cursor = {
-      theme = "Adwaita";
+      theme = "Bibata-Modern-Classic";
       size = 24;
     };
 
@@ -177,14 +173,12 @@
     animations = {
       slowdown = 1.0;
 
-      # workspace-switchはspringタイプ
       workspace-switch.kind.spring = {
         damping-ratio = 1.0;
         stiffness = 800;
         epsilon = 0.0001;
       };
 
-      # window-openとwindow-closeはeasingタイプ
       window-open.kind.easing = {
         duration-ms = 150;
         curve = "ease-out-cubic";
@@ -195,14 +189,12 @@
         curve = "ease-out-cubic";
       };
 
-      # window-movementはspringタイプ
       window-movement.kind.spring = {
         damping-ratio = 1.0;
         stiffness = 800;
         epsilon = 0.0001;
       };
 
-      # horizontal-view-movementはspringタイプ
       horizontal-view-movement.kind.spring = {
         damping-ratio = 1.0;
         stiffness = 800;
@@ -218,20 +210,29 @@
         ];
         default-column-width = {proportion = 0.5;};
       }
+      
+      # --- 角丸除外ルールの例 (必要に応じて) ---
+      # 例: YouTube全画面表示時などは角丸を解除したほうが見栄えが良い場合
+      # {
+      #   matches = [
+      #     { app-id = ".*"; } # 全ウィンドウ対象にして除外ロジックを組むか、特定アプリのみ
+      #   ];
+      #   # 全画面時は自動で解除されることが多いですが、
+      #   # 特定アプリで角丸を無効にしたい場合はここに excludes を書きます。
+      # }
     ];
-
-    # デバッグ
-    debug = {
-      # render-drm-device = "/dev/dri/renderD128";
-      # disable-cursor-plane = false;
-    };
   };
 
   # 必要なパッケージ
   home.packages = with pkgs; [
-    xwayland-satellite-unstable
-    brightnessctl # 明るさ調整
-    mako
+    xwayland-satellite
+    bibata-cursors
+
+    # その他ユーティリティ
+    brightnessctl # swayosdが内部で使用する場合があるため残しておくのが無難
     swww
+    ghostty
+    wofi
+    wireplumber
   ];
 }

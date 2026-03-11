@@ -27,5 +27,7 @@
     stable.openutau
     ardour
     stable.krita
+    chromium
+    discord
   ];
 }
