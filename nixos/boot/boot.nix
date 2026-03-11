@@ -9,7 +9,7 @@
     };
 
     # Zen kernel
-    kernelPackages = pkgs.stable.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
 
     # 起動時のログレベル
     consoleLogLevel = 0;

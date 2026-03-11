@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     # システムツール
     git
@@ -8,9 +8,8 @@
     btop
     procps
     killall
-    bluez
+    # Bluetooth
     bluetui
-
     # NixOSツール
     cachix
     nh
@@ -28,11 +27,9 @@
     lix.nix-update
     lix.nix-eval-jobs
     lix.nix-fast-build
-
     # エディタ
     micro
     helix
-
     # ファイル管理
     zip
     unzip
@@ -40,16 +37,13 @@
     gzip
     xz
     udisks
-
     # その他
     fastfetch
+    # QMK
     qmk
     dfu-util
     via
   ];
 
-  # システムワイドで有効化するプログラム
-  programs = {
-    zsh.enable = true;
-  };
+  programs.zsh.enable = true;
 }
