@@ -14,7 +14,6 @@
         lix = prev.lixPackageSets.stable;
       })
 
-      inputs.niri.overlays.niri
       inputs.floorp.overlays.default
       (import ./overlays)
     ];

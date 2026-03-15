@@ -9,7 +9,7 @@
     ghostty
 
     # ファイルマネージャー
-    nemo
+    nautilus
 
     # 画像ビューア
     imv

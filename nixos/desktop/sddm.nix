@@ -1,8 +1,13 @@
-{ pkgs, lib, ... }: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-    wayland.compositorCommand = lib.mkForce
+    wayland.compositorCommand =
+      lib.mkForce
       "${pkgs.kdePackages.kwin}/bin/kwin_wayland --no-global-shortcuts --no-kactivities --locale1";
     theme = "sddm-astronaut-theme";
     extraPackages = [

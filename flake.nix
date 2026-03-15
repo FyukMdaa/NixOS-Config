@@ -8,17 +8,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-facter.url = "github:numtide/nixos-facter-modules";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     musnix.url = "github:musnix/musnix";
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,10 +28,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nh.url = "github:viperML/nh";
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     floorp.url = "github:fyukmdaa/floorp-flake";
     twist.url = "github:emacs-twist/twist.nix";
     emacs-d.url = "github:fyukmdaa/emacs-config";

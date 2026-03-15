@@ -1,0 +1,173 @@
+j// ===== 入力デバイス =====
+input {
+    keyboard {
+        xkb {
+            layout "jp"
+        }
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+        dwt
+        accel-speed 0.3
+    }
+
+    mouse {
+        accel-speed 0.0
+    }
+}
+
+// ===== ディスプレイ =====
+output "eDP-1" {
+    scale 1.0
+}
+
+// ===== レイアウト =====
+layout {
+    gaps 8
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width {
+        proportion 0.5
+    }
+
+    border {
+        width 2
+        active-color "#7dcfff"
+        inactive-color "#414868"
+    }
+
+    focus-ring {
+        off
+    }
+}
+
+// ===== 環境変数 =====
+environment {
+    NIXOS_OZONE_WL "1"
+    MOZ_ENABLE_WAYLAND "1"
+    QT_QPA_PLATFORM "wayland"
+    GTK_IM_MODULE "fcitx"
+    QT_IM_MODULE "fcitx"
+    XMODIFIERS "@im=fcitx"
+}
+
+// ===== 起動時実行 =====
+spawn-at-startup "swaync"
+spawn-at-startup "swayosd-server"
+spawn-at-startup "fcitx5" "-d"
+spawn-at-startup "swww-daemon"
+
+// ===== アニメーション =====
+animations {
+    slowdown 1.0
+
+    workspace-switch {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    window-open {
+        duration-ms 150
+        curve "ease-out-cubic"
+    }
+
+    window-close {
+        duration-ms 150
+        curve "ease-out-cubic"
+    }
+
+    window-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    horizontal-view-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+}
+
+// ===== ウィンドウルール =====
+window-rule {
+    match app-id="^org.keepassxc.KeePassXC$"
+    default-column-width { proportion 0.5; }
+}
+
+// ===== キーバインド =====
+binds {
+    // 基本操作
+    Mod+Return { spawn "ghostty"; }
+    Mod+D { spawn "wofi" "--show" "drun"; }
+    Mod+Q { close-window; }
+    Mod+O { toggle-overview; }
+
+    // 通知センター
+    Mod+T { spawn "swaync-client" "-t"; }
+
+    // ウィンドウフォーカス
+    Mod+H { focus-column-left; }
+    Mod+L { focus-column-right; }
+    Mod+N { focus-window-down; }
+    Mod+P { focus-window-up; }
+
+    // ウィンドウ移動
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+L { move-column-right; }
+    Mod+Shift+N { move-window-down; }
+    Mod+Shift+P { move-window-up; }
+
+    // ウィンドウサイズ調整
+    Mod+Ctrl+H { set-column-width "-10%"; }
+    Mod+Ctrl+L { set-column-width "+10%"; }
+    Mod+Ctrl+N { set-window-height "+10%"; }
+    Mod+Ctrl+P { set-window-height "-10%"; }
+
+    // プリセット幅・最大化
+    Mod+R { switch-preset-column-width; }
+    Mod+M { maximize-column; }
+    Mod+Shift+M { fullscreen-window; }
+
+    // ワークスペースへ移動
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+
+    // ワークスペースフォーカス
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+K { focus-workspace-up; }
+    Mod+J { focus-workspace-down; }
+
+    // モニター間移動
+    Mod+Comma  { focus-monitor-left; }
+    Mod+Period { focus-monitor-right; }
+    Mod+Shift+Comma  { move-column-to-monitor-left; }
+    Mod+Shift+Period { move-column-to-monitor-right; }
+
+    // システム
+    Mod+Shift+E { quit; }
+
+    // スクリーンショット
+    Print       { screenshot; }
+    Shift+Print { screenshot-screen; }
+    Alt+Print   { screenshot-window; }
+
+    // 音量調整
+    XF86AudioRaiseVolume { spawn "swayosd-client" "--output-volume" "raise"; }
+    XF86AudioLowerVolume { spawn "swayosd-client" "--output-volume" "lower"; }
+    XF86AudioMute        { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+
+    // 明るさ調整
+    XF86MonBrightnessUp   { spawn "swayosd-client" "--brightness" "raise"; }
+    XF86MonBrightnessDown { spawn "swayosd-client" "--brightness" "lower"; }
+}
