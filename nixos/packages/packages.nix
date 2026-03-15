@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # システムツール
     git
@@ -37,12 +37,12 @@
     gzip
     xz
     udisks
+    udiskie
     # その他
     fastfetch
     # QMK
     qmk
     dfu-util
-    via
   ];
 
   programs.zsh.enable = true;

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   security = {
     # SSL証明書
     pki.certificateFiles = [

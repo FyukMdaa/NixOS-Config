@@ -26,7 +26,6 @@ in {
 
               # 外部モジュール
               inputs.sops-nix.nixosModules.sops
-              inputs.niri.nixosModules.niri
               inputs.nixos-facter.nixosModules.facter
             ];
           }
