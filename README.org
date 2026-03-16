@@ -15,4 +15,5 @@ nh os switch .#hostname
 
 ** Todo
 - [ ] ewwの導入
+- [ ] configをしっかり書く
 - [ ] 構造をよりシンプルで機能的に
