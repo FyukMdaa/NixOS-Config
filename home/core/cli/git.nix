@@ -4,7 +4,7 @@ _: {
 
     settings = {
       user.name = "FyukMdaa";
-      user.email = "mdaatiu@outlook.com";
+      user.email = "fyukmdaa@tutanota.com";
       init.defaultBranch = "main";
       core.editor = "micro";
       pull.rebase = false;
