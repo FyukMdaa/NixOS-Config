@@ -1,0 +1,28 @@
+font-family = "PlemolJP Console NF"
+font-family-bold = "PlemolJP Console NF"
+font-family-italic = "PlemolJP Console NF"
+font-family-bold-italic = "PlemolJP Console NF"
+font-style = "Light"
+font-style-bold = "Bold"
+font-style-italic= "Light"
+font-style-bold-italic = "Bold"
+adjust-cell-height = 20%
+font-size = "13.0"
+
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+font-feature = -ss05
+
+bold-is-bright = true
+cursor-style = block
+shell-integration-features = no-cursor
+
+gtk-titlebar = false
+window-padding-x = 0
+window-padding-y = 0
+window-padding-balance = true
+
+copy-on-select = true
+
+keybind = ctrl+enter=unbind

@@ -27,6 +27,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nh.url = "github:viperML/nh";
     floorp.url = "github:fyukmdaa/floorp-flake";
     twist.url = "github:emacs-twist/twist.nix";
@@ -48,7 +52,6 @@
       perSystem = _: {
         treefmt.config = {
           projectRootFile = "flake.nix";
-
           programs.alejandra.enable = true;
         };
       };

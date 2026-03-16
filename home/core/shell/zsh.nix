@@ -4,8 +4,8 @@
     dotDir = "${config.xdg.configHome}/zsh";
     defaultKeymap = "emacs";
     enableCompletion = true;
-    autosuggestion.enable = false; # zsh-autocompleteと競合
-    syntaxHighlighting.enable = false; # fast-syntax-highlightingを使用
+    autosuggestion.enable = false;
+    syntaxHighlighting.enable = false;
 
     # Shell Options
     history = {

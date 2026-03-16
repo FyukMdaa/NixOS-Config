@@ -5,9 +5,6 @@
 
   # GUI用の基本パッケージ
   home.packages = with pkgs; [
-    # ターミナル
-    ghostty
-
     # ファイルマネージャー
     nautilus
 
