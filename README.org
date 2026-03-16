@@ -15,5 +15,4 @@ nh os switch .#hostname
 
 ** Todo
 - [ ] ewwの導入
-- [ ] ghosttyのconfigを書く
 - [ ] 構造をよりシンプルで機能的に
